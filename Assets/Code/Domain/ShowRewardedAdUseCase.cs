@@ -1,4 +1,3 @@
-using UnityEngine;
 
 namespace Domain
 {
@@ -14,6 +13,13 @@ namespace Domain
         public async void Show()
         {
             var result = await _adService.ShowRewardedAd();
+            if (result == RewardedAdStatus.Ok)
+            {
+                // TODO: Dar la recompensa use case
+                return;
+            }
+            
+            // TODO: Mostar mensaje de error use case
         }
     }
 }

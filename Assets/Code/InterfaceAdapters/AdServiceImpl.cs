@@ -21,6 +21,17 @@ namespace InterfaceAdapters
             return Task.Run(() => taskCompletionSource.Task);
         }
 
+        public void LoadRewardedAd()
+        {
+            _mainProvider.LoadRewardedAd();
+        }
+
+        public void Init(AdConfiguration configuration)
+        {
+            var adConf = new AdConf(configuration.AdId);
+            _mainProvider.Init(adConf);
+        }
+
         private void OnShowRewardedAdEnded(InterfaceAdapters.RewardedAdStatus status,
             TaskCompletionSource<Domain.RewardedAdStatus> taskCompletionSource)
         {

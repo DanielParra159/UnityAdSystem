@@ -5,5 +5,7 @@ namespace Domain
     public interface AdService
     {
         Task<RewardedAdStatus> ShowRewardedAd();
+        void LoadRewardedAd();
+        void Init(AdConfiguration adConfiguration);
     }
 }

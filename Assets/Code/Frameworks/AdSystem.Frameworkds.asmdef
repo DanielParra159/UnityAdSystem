@@ -2,7 +2,8 @@
     "name": "AdSystem.Frameworkds",
     "rootNamespace": "",
     "references": [
-        "GUID:5ad95bc09838a4d6fb352fd6e36e9988"
+        "GUID:5ad95bc09838a4d6fb352fd6e36e9988",
+        "GUID:ff6de30450f3748908ff580f6ec64d9a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

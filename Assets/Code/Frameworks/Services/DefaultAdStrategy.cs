@@ -5,22 +5,39 @@ namespace Frameworks.Services
 {
     public class DefaultAdStrategy : AdSDKAdapter
     {
-        private readonly RewardedAd _rewardedAd;
+        private RewardedAd _rewardedAd;
+        private readonly RewardedAddLoader _rewardedAddLoader;
         private Action<RewardedAdStatus> _callback;
+        
+        private AdConf _conf;
 
-        public DefaultAdStrategy(RewardedAd rewardedAd)
+        public DefaultAdStrategy(RewardedAddLoader rewardedAddLoader)
         {
-            _rewardedAd = rewardedAd;
+            _rewardedAddLoader = rewardedAddLoader;
         }
+
 
         public void ShowRewardedAd(Action<RewardedAdStatus> callback)
         {
+            if (_rewardedAd == null)
+                throw new NullReferenceException("Rewarded ad not loaded");
+            
             _callback = callback;
             _rewardedAd.OnOkButtonPressed += HandleOk;
             _rewardedAd.OnCancelButtonPressed += HandleCancel;
             _rewardedAd.OnErrorButtonPressed += HandleError;
 
             _rewardedAd.Show();
+        }
+
+        public async void LoadRewardedAd()
+        {
+            _rewardedAd = await _rewardedAddLoader.Load();
+        }
+
+        public void Init(AdConf conf)
+        {
+            _conf = conf;
         }
 
         private void HandleOk()
