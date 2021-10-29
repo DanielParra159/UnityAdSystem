@@ -1,0 +1,16 @@
+{
+    "name": "AdSystem.InterfaceAdapters",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5f9256b85c77c48578806e10bbbd9e93"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
