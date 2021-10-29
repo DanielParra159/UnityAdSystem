@@ -15,16 +15,22 @@ namespace Main
 
         private void Awake()
         {
-            var defaultAdStrategy = new DefaultAdStrategy(_rewardedAddLoaderImpl);
-            var unityAdStrategy = new UnityAdStrategy();
-
-            var adServiceImpl = new AdServiceImpl(unityAdStrategy);
+            var adStrategy = GetAdStrategy();
+            var adServiceImpl = new AdServiceImpl(adStrategy);
 
             var adConfigurationProviderImpl = new AdConfigurationProviderImpl();
             var initAdServiceUseCase = new InitAdServiceUseCase(adServiceImpl, adConfigurationProviderImpl);
             initAdServiceUseCase.Init();
             _loadRewardedAdUseCase = new LoadRewardedAdUseCase(adServiceImpl);
             _showRewardedAdUseCase = new ShowRewardedAdUseCase(adServiceImpl);
+        }
+
+        private AdSDKAdapter GetAdStrategy()
+        {
+#if USE_UNITY_SDK
+            return new UnityAdStrategy();
+#endif
+            return new DefaultAdStrategy(_rewardedAddLoaderImpl);
         }
 
         private void Update()
